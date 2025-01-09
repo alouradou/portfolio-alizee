@@ -97,25 +97,35 @@
 </script>
 
 <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const pdfURL = './src/portfolio_alizee_2024.pdf';
+        const preloadedIframe = document.createElement('iframe');
+        preloadedIframe.style.display = 'none';
+        preloadedIframe.src = pdfURL;
+        preloadedIframe.id = 'preloadedPDF';
+        document.body.appendChild(preloadedIframe);
+    });
+
     function printPDF() {
-      const pdfURL = './src/portfolio_alizee_2024.pdf';
-      const iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.src = pdfURL;
-      document.body.appendChild(iframe);
+        const pdfURL = './src/portfolio_alizee_2024.pdf';
+        const iframe = document.getElementById('preloadedPDF');
+        // document.body.appendChild(iframe);
 
-      iframe.onload = function() {
-        try {
-          iframe.contentWindow.print();
-        } catch (e) {
-          console.error('Failed to print:', e);
-          // window.open(pdfURL);
+        if (iframe) {
+            try {
+                iframe.contentWindow.print();
+            } catch (e) {
+                console.error('Failed to print:', e);
+                window.open(pdfURL);
+            }
+
+            setTimeout(() => {
+                document.body.removeChild(iframe);
+            }, 5000);
         }
-
-        setTimeout(() => {
-          document.body.removeChild(iframe);
-        }, 5000);
-      };
+        else {
+            window.open(pdfURL);
+        }
     }
 </script>
 
