@@ -109,7 +109,6 @@
     function printPDF() {
         const pdfURL = './src/portfolio_alizee_2024.pdf';
         const iframe = document.getElementById('preloadedPDF');
-        // document.body.appendChild(iframe);
 
         if (iframe) {
             try {
@@ -118,10 +117,6 @@
                 console.error('Failed to print:', e);
                 window.open(pdfURL);
             }
-
-            setTimeout(() => {
-                document.body.removeChild(iframe);
-            }, 5000);
         }
         else {
             window.open(pdfURL);
